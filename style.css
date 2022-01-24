@@ -1,0 +1,36 @@
+#player {
+font-size: 1.5rem;
+background-color: #0c726d;
+display: center;
+align-items: left;
+color: #02180e;
+margin-right: 1025px;
+
+}
+#player_container{
+display: center;
+justify-content: center;
+height: 120px;
+z-index: 1;
+width: 100%;
+max-width: 1300px;
+margin-right: auto;
+margin-left: auto;
+padding-right: 50px;
+padding-left: 50px;
+background-color: aquamarine;
+}
+#match_history{
+display: center;
+justify-content: left;
+height: 120px;
+z-index: 1;
+width: 100%;
+max-width: 1300px;
+margin-right: auto;
+margin-left: auto;
+padding-top: 10px;
+padding-right: 50px;
+padding-left: 50px;
+background-color: purple;
+}
