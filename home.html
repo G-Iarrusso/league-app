@@ -7,17 +7,15 @@
     <link href="style.css" rel="stylesheet" />
 </head>
 
-<body>
+<body style="background-color:#1f2f3f;">
     <div id=player_container>
-        <div id="player"></div>
-        <div id="level"></div>
+        <div id="welcome">
+            <h1>Welcome to League Stats</h1>
+        </div>
+        <form id="myForm" action="/playerPage.html">
+            Enter Your Summoner Name: <input type="text" name="summonerName" value="thebomber66">
+        </form>
     </div>
-    <div id=match_history>
-        <div id="info"></div>
-        <div id="participants"></div>
-        <div id="score"></div>
-    </div>
-    <script src="player.js"></script>
 </body>
 
 </html>
