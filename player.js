@@ -10,7 +10,7 @@ const rankedSoloDuoQueueID = 420;
 const rankedFlexQueueID = 440;
 const blindPickQueueID = 430;
 console.log(rankedFlexQueueID);
-var api_key = 'RGAPI-c7ca5349-2a42-42b0-81be-59451ad29c51';
+var api_key = 'RGAPI-9523fac3-4a19-4206-991e-21cf286d40ed';
 fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName + '?api_key=' + api_key).then((response) => {
     if (response.ok) {
         return response.json();
@@ -19,8 +19,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
     }
 })
     .then(player_data => {
-        displayName(player_data)
-        displayLevel(player_data)
+        fill_player_container(player_data);
         fetch('https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/' + player_data.puuid + '/ids?api_key=' + api_key).then((response) => {
             if (response.ok) {
                 return response.json();
@@ -37,8 +36,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
                     }
                 })
                     .then(last_match_data => {
-                        displayMatch(last_match_data)
-                        displayParticipant(last_match_data, player_data.puuid)
+                        fill_basic_info(last_match_data, player_data.puuid)
                     })
                     .catch((error) => console.error("FETCH ERROR:", error));
             })
@@ -49,7 +47,22 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
         badFetch()
     });
 
+// bad fetch printing
+function badFetch() {
+    const playerName = document.getElementById("playerName");
+    const heading = document.createElement("p");
+    heading.innerHTML = summonerName;
+    playerName.appendChild(heading);
+    const errorMessage = document.getElementById("player");
+    const heading2 = document.createElement("p");
+    heading2.innerHTML = "Player does not exist, please try again";
+    errorMessage.appendChild(heading2);
+}
+function fill_player_container(player_data) {
+    displayName(player_data);
+    displayLevel(player_data);
 
+}
 function displayLevel(player_data) {
     console.log(player_data)
     const data = player_data;
@@ -69,7 +82,14 @@ function displayName(player_data) {
     playerDiv.appendChild(summonerNameHeading);
 }
 
-//matches data
+
+//basic info div
+function fill_basic_info(last_match_data, puuid) {
+
+    displayMatch(last_match_data)
+    displayParticipant(last_match_data, puuid)
+}
+
 function displayMatch(matches_data) {
     console.log(matches_data)
     const match = matches_data.info.queueId;
@@ -132,17 +152,9 @@ function displayParticipant(matches_data, goal) {
     const heading3 = document.createElement("p");
     heading3.innerHTML = "Champion Level:" + championLevel;
     matchDiv1.appendChild(heading3);
-    matchDiv1.appendChild(heading2);
-
+    matchDiv1.appendChild(heading2)
 }
 
-function badFetch() {
-    const playerName = document.getElementById("playerName");
-    const heading = document.createElement("p");
-    heading.innerHTML = summonerName;
-    playerName.appendChild(heading);
-    const errorMessage = document.getElementById("player");
-    const heading2 = document.createElement("p");
-    heading2.innerHTML = "Player does not exist, please try again";
-    errorMessage.appendChild(heading2);
-}
+// damage_health section
+
+// items and other section
