@@ -24,7 +24,6 @@ color: #ffffff;
 #match_history{
 display: center;
 justify-content: left;
-height: 1200px;
 z-index: 1;
 width: 100%;
 max-width: 1300px;
@@ -38,7 +37,6 @@ background-color: #ffffff;
 }
 #inner_match_history{
     background-color: #1f2f3f;
-    height: 1180px;
     z-index: 1;
     width: 100%;
     max-width: 1200px;
@@ -47,7 +45,7 @@ background-color: #ffffff;
     padding-left: 50px;
     padding-bottom: 10px;
     color: #ffffff;
-    text-indent: -40px;
+    text-indent: -40px
 
 }
 #welcome{
@@ -83,11 +81,12 @@ background-color: #ffffff;
     padding-right: 50px;
     padding-left: 50px;
     padding-bottom: 10px;
-    width:498.01px;
-    display: inline-block;
+    width:490px;
     position: relative;
     top: 10px;
-    height: 900px
+    right: 10px;
+        display: flex;
+        flex-direction: column;
 }
 #items_and_other{
     background-color: #1f1f1f;
@@ -97,9 +96,24 @@ background-color: #ffffff;
     padding-right: 50px;
     padding-left: 50px;
     padding-bottom: 10px;
-    width: 498px;
+    width: 490px;
     position: relative;
     top: 10px;
-    display: inline-block;
-    height: 900px
+    right: -10px;
+        display: flex;
+        flex-direction: column;
+}
+
+#coloumns{
+    background-color: #1f2f3f;
+    z-index: 1;
+    max-width: 1200px;
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 10px;
+    color: #ffffff;
+    text-indent: -40px;
+    display: flex;
+
 }
