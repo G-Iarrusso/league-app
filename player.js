@@ -61,7 +61,34 @@ function badFetch() {
 function fill_player_container(player_data) {
     displayName(player_data);
     displayLevel(player_data);
+    displayRank(player_data);
 
+}
+
+function displayRank(player_data) {
+    console.log(player_data)
+    fetch('https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/' + player_data.id + '?api_key=' + api_key).then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("NETWORK RESPONSE ERROR");
+        }
+    }).then(player_ranked_data => {
+        console.log(player_ranked_data)
+        for (let i = 0; i < player_ranked_data.length; i++) {
+            if (player_ranked_data[i].queueType == "RANKED_SOLO_5x5") {
+                var id = i;
+                console.log(id);
+            }
+        }
+        const rankedIcon = document.getElementById('rankImage');
+        console.log(rankedIcon);
+        const img = document.createElement('img');
+        img.setAttribute("id", "rankedPicture");
+        img.src =
+            '/Ranked_Icons/Emblem_' + player_ranked_data[id].tier + '.png';
+        rankedIcon.appendChild(img);
+    })
 }
 function displayLevel(player_data) {
     console.log(player_data)
@@ -129,12 +156,20 @@ function displayParticipant(matches_data, goal) {
             var playerInfo = matches_data.info.participants[i];
         }
     }
+    const champoionIcon = document.getElementById('championImage');
+    console.log(champoionIcon);
+    const img = document.createElement('img');
+    img.setAttribute("id", "championPicture");
+    img.src =
+        'http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/' + championName + '.png';
+    champoionIcon.appendChild(img);
+    //http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/Shen.png
     if (playerInfo.win == true) {
-        document.getElementById("match_history").style.backgroundColor = "green";
+        document.getElementById("match_history").style.border = "10px solid green ";
     }
     else {
 
-        document.getElementById("match_history").style.backgroundColor = "red";
+        document.getElementById("match_history").style.border = "10px solid red";
     }
     console.log(id);
     const score = playerInfo.kills + "/" + playerInfo.deaths + "/" + playerInfo.assists;
