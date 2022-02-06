@@ -266,3 +266,7 @@ function fill_items_and_other(matches_data, goal) {
     }
 
 }
+
+// maybe refactor to not do so man fetches at start
+
+// separate better for the player page divs
