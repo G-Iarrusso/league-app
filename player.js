@@ -10,7 +10,7 @@ const rankedSoloDuoQueueID = 420;
 const rankedFlexQueueID = 440;
 const blindPickQueueID = 430;
 console.log(rankedFlexQueueID);
-var api_key = 'RGAPI-9523fac3-4a19-4206-991e-21cf286d40ed';
+var api_key = 'RGAPI-a1b0712d-5ed9-4b1e-a3ee-1f92f7203317';
 fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName + '?api_key=' + api_key).then((response) => {
     if (response.ok) {
         return response.json();
@@ -37,6 +37,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
                 })
                     .then(last_match_data => {
                         fill_basic_info(last_match_data, player_data.puuid)
+                        fill_items_and_other(last_match_data, player_data.puuid)
                     })
                     .catch((error) => console.error("FETCH ERROR:", error));
             })
@@ -146,7 +147,6 @@ function displayMatch(matches_data) {
     typeHeading.innerHTML = matchType;
     matchDiv.appendChild(typeHeading);
 }
-
 function displayParticipant(matches_data, goal) {
     const num_players = matches_data.info.participants.length;
     for (let i = 0; i < num_players; i++) {
@@ -193,3 +193,76 @@ function displayParticipant(matches_data, goal) {
 // damage_health section
 
 // items and other section
+function fill_items_and_other(matches_data, goal) {
+    const num_players = matches_data.info.participants.length;
+    for (let i = 0; i < num_players; i++) {
+        if (matches_data.info.participants[i].puuid == goal) {
+            var id = i;
+            var playerInfo = matches_data.info.participants[i];
+        }
+    }
+    if (playerInfo.item0 != 0) {
+        const item0 = document.getElementById('item0');
+        const img0 = document.createElement('img');
+        img0.setAttribute("id", "item0picture");
+        img0.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item0 + '.png';
+        console.log(img0.src)
+        item0.appendChild(img0);
+    }
+    if (playerInfo.item1 != 0) {
+        const item1 = document.getElementById('item1');
+        const img1 = document.createElement('img');
+        img1.setAttribute("id", "item1picture");
+        img1.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item1 + '.png';
+        console.log(img1.src)
+        item1.appendChild(img1);
+    }
+    if (playerInfo.item2 != 0) {
+        const item2 = document.getElementById('item2');
+        const img2 = document.createElement('img');
+        img2.setAttribute("id", "item2picture");
+        img2.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item2 + '.png';
+        console.log(img2.src)
+        item2.appendChild(img2);
+    }
+    if (playerInfo.item3 != 0) {
+        const item3 = document.getElementById('item3');
+        const img3 = document.createElement('img');
+        img3.setAttribute("id", "item3picture");
+        img3.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item3 + '.png';
+        console.log(img3.src)
+        item3.appendChild(img3);
+    }
+    if (playerInfo.item4 != 0) {
+        const item4 = document.getElementById('item4');
+        const img4 = document.createElement('img');
+        img4.setAttribute("id", "item4picture");
+        img4.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item4 + '.png';
+        console.log(img4.src)
+        item4.appendChild(img4);
+    }
+    if (playerInfo.item5 != 0) {
+        const item5 = document.getElementById('item5');
+        const img5 = document.createElement('img');
+        img5.setAttribute("id", "item5picture");
+        img5.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item5 + '.png';
+        console.log(img5.src)
+        item5.appendChild(img5);
+    }
+    if (playerInfo.item6 != 0) {
+        const item6 = document.getElementById('item6');
+        const img6 = document.createElement('img');
+        img6.setAttribute("id", "item6picture");
+        img6.src =
+            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item6 + '.png';
+        console.log(img6.src)
+        item6.appendChild(img6);
+    }
+
+}
