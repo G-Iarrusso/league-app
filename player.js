@@ -10,7 +10,7 @@ const rankedSoloDuoQueueID = 420;
 const rankedFlexQueueID = 440;
 const blindPickQueueID = 430;
 console.log(rankedFlexQueueID);
-var api_key = 'RGAPI-a1b0712d-5ed9-4b1e-a3ee-1f92f7203317';
+var api_key = 'RGAPI-2661aba8-280a-4eb6-9b77-ffccc5fcd2d2';
 fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName + '?api_key=' + api_key).then((response) => {
     if (response.ok) {
         return response.json();
@@ -79,9 +79,15 @@ function displayRank(player_data) {
         for (let i = 0; i < player_ranked_data.length; i++) {
             if (player_ranked_data[i].queueType == "RANKED_SOLO_5x5") {
                 var id = i;
-                console.log(id);
+                var rankedInfo = player_ranked_data[i];
             }
         }
+        const rankedDiv = document.getElementById("ranked");
+        const rank = rankedInfo.tier + " "+ rankedInfo.rank + " LP: "+rankedInfo.leaguePoints;
+        const rankHeading = document.createElement("h3");
+        rankHeading.innerHTML = rank;
+        rankedDiv.appendChild(rankHeading);
+
         const rankedIcon = document.getElementById('rankImage');
         console.log(rankedIcon);
         const img = document.createElement('img');
