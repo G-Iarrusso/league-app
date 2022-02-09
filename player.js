@@ -10,7 +10,7 @@ const rankedSoloDuoQueueID = 420;
 const rankedFlexQueueID = 440;
 const blindPickQueueID = 430;
 console.log(rankedFlexQueueID);
-var api_key = 'RGAPI-2661aba8-280a-4eb6-9b77-ffccc5fcd2d2';
+var api_key = config.MY_API_TOKEN;
 fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName + '?api_key=' + api_key).then((response) => {
     if (response.ok) {
         return response.json();
