@@ -37,6 +37,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
                 })
                     .then(last_match_data => {
                         fill_basic_info(last_match_data, player_data.puuid)
+                        fill_in_game_info(last_match_data, player_data.puuid)
                         fill_items_and_other(last_match_data, player_data.puuid)
                     })
                     .catch((error) => console.error("FETCH ERROR:", error));
@@ -85,6 +86,8 @@ function displayRank(player_data) {
         const rankedDiv = document.getElementById("ranked");
         const rank = rankedInfo.tier + " "+ rankedInfo.rank + " LP: "+rankedInfo.leaguePoints;
         const rankHeading = document.createElement("h3");
+        rankHeading.style.marginTop = "2px";
+        rankHeading.style.marginBottom = "2px";
         rankHeading.innerHTML = rank;
         rankedDiv.appendChild(rankHeading);
 
@@ -103,6 +106,8 @@ function displayLevel(player_data) {
     const levelDiv = document.getElementById("level");
     const level = data.summonerLevel;
     const levelHeading = document.createElement("h2");
+    levelHeading.style.marginTop = "2px";
+    levelHeading.style.marginBottom = "2px";
     levelHeading.innerHTML = level;
     levelDiv.appendChild(levelHeading);
 }
@@ -193,17 +198,169 @@ function displayParticipant(matches_data, goal) {
     const heading3 = document.createElement("p");
     heading3.innerHTML = "Champion Level:" + championLevel;
     matchDiv1.appendChild(heading3);
-    matchDiv1.appendChild(heading2)
+    matchDiv1.appendChild(heading2);
+
+    const minionDiv = document.getElementById("minions");
+    const paraminions = document.createElement("p");
+    var total_minions = playerInfo.totalMinionsKilled + playerInfo.neutralMinionsKilled;
+    paraminions.innerHTML = "Minion Farm: "+total_minions;
+    minionDiv.appendChild(paraminions)
+
+    const minionperDiv = document.getElementById("minions_min");
+    const paraminionsmin = document.createElement("p");
+    paraminionsmin.innerHTML ="Minion Farm per minute: " + Math.round((total_minions/playerInfo.timePlayed)*60*100)/100;
+    minionperDiv.appendChild(paraminionsmin)
 }
 
 // damage_health section
+function fill_in_game_info(matches_data,goal){
+    fill_offense_info(matches_data,goal)
+    fill_defensive_info(matches_data,goal)
+    fill_utility_info(matches_data,goal)
+}
 
+function fill_offense_info(matches_data, goal){
+    const num_players = matches_data.info.participants.length;
+    for (let i = 0; i < num_players; i++) {
+        if (matches_data.info.participants[i].puuid == goal) {
+            var playerInfo = matches_data.info.participants[i];
+        }
+    }
+    const physicalDiv = document.getElementById("physicalDamage");
+    const paraPhysical = document.createElement("p");
+    paraPhysical.style.marginTop = "2px";
+    paraPhysical.style.marginBottom = "2px";
+    paraPhysical.innerHTML ="Physical Damage: "+playerInfo.physicalDamageDealtToChampions;
+    physicalDiv.appendChild(paraPhysical)
+
+    const magicDiv = document.getElementById("magicDamage");
+    const paraMagic = document.createElement("p");
+    paraMagic.style.marginTop = "2px";
+    paraMagic.style.marginBottom = "2px";
+    paraMagic.innerHTML = "Magic Damage: "+playerInfo.magicDamageDealtToChampions;
+    magicDiv.appendChild(paraMagic)
+
+    const trueDiv = document.getElementById("trueDamage");
+    const paraTrue = document.createElement("p");
+    paraTrue.style.marginTop = "2px";
+    paraTrue.style.marginBottom = "2px";
+    paraTrue.innerHTML = "True Damage: "+ playerInfo.trueDamageDealtToChampions;
+    trueDiv.appendChild(paraTrue);
+
+    const totalDiv = document.getElementById("totalDamage");
+    const paraTotal = document.createElement("p");
+    paraTotal.style.marginTop = "2px";
+    paraTotal.style.marginBottom = "2px";
+    paraTotal.innerHTML = "Total Damage: "+ playerInfo.totalDamageDealtToChampions;
+    totalDiv.appendChild(paraTotal);
+
+    const killingDiv = document.getElementById("killingSpree");
+    const paraKilling = document.createElement("p");
+    paraKilling.style.marginTop = "2px";
+    paraKilling.style.marginBottom = "2px";
+    paraKilling.innerHTML = "Largest Killing Spree: "+ playerInfo.largestKillingSpree;
+    killingDiv.appendChild(paraKilling);
+}
+
+function fill_defensive_info(matches_data, goal){
+    const num_players = matches_data.info.participants.length;
+    for (let i = 0; i < num_players; i++) {
+        if (matches_data.info.participants[i].puuid == goal) {
+            var playerInfo = matches_data.info.participants[i];
+        }
+    }
+
+    const physicalDiv = document.getElementById("physicalTank");
+    const paraPhysical = document.createElement("p");
+    paraPhysical.style.marginTop = "2px";
+    paraPhysical.style.marginBottom = "2px";
+    paraPhysical.innerHTML = "Physical Damage: "+ playerInfo.physicalDamageTaken;
+    physicalDiv.appendChild(paraPhysical);
+    
+    const magicDiv = document.getElementById("magicTank");
+    const paraMagic = document.createElement("p");
+    paraMagic.style.marginTop = "2px";
+    paraMagic.style.marginBottom = "2px";
+    paraMagic.innerHTML = "Magic Damage: "+playerInfo.magicDamageTaken;
+    magicDiv.appendChild(paraMagic)
+
+    const trueDiv = document.getElementById("trueTank");
+    const paraTrue = document.createElement("p");
+    paraTrue.style.marginTop = "2px";
+    paraTrue.style.marginBottom = "2px";
+    paraTrue.innerHTML = "True Damage: "+ playerInfo.trueDamageTaken;
+    trueDiv.appendChild(paraTrue);
+
+    const totalDiv = document.getElementById("totalTank");
+    const paraTotal = document.createElement("p");
+    paraTotal.style.marginTop = "2px";
+    paraTotal.style.marginBottom = "2px";
+    paraTotal.innerHTML = "Total Damage: "+ playerInfo.totalDamageTaken;
+    totalDiv.appendChild(paraTotal);
+
+    const healDiv = document.getElementById("healTank");
+    const paraHeal = document.createElement("p");
+    paraHeal.style.marginTop = "2px";
+    paraHeal.style.marginBottom = "2px";
+    paraHeal.innerHTML = "Damage Healed: "+ playerInfo.totalHeal;
+    healDiv.appendChild(paraHeal);
+
+    const mitigatedDiv = document.getElementById("mitigatedTank");
+    const paraMitigated = document.createElement("p");
+    paraMitigated.style.marginTop = "2px";
+    paraMitigated.style.marginBottom = "2px";
+    paraMitigated.innerHTML = "Mitigated Damage: "+ playerInfo.damageSelfMitigated;
+    mitigatedDiv.appendChild(paraMitigated);
+} 
+
+function fill_utility_info(matches_data, goal){
+    const num_players = matches_data.info.participants.length;
+    for (let i = 0; i < num_players; i++) {
+        if (matches_data.info.participants[i].puuid == goal) {
+            var playerInfo = matches_data.info.participants[i];
+        }
+    }
+
+    const goldDiv = document.getElementById("goldUtility");
+    const paraGold = document.createElement("p");
+    paraGold.style.marginTop = "2px";
+    paraGold.style.marginBottom = "2px";
+    paraGold.innerHTML = "Gold Earned: "+ playerInfo.goldEarned;
+    goldDiv.appendChild(paraGold);
+
+    const scoreDiv = document.getElementById("scoreUtility");
+    const paraScore = document.createElement("p");
+    paraScore.style.marginTop = "2px";
+    paraScore.style.marginBottom = "2px";
+    paraScore.innerHTML = "Vision Score: "+ playerInfo.visionScore;
+    scoreDiv.appendChild(paraScore);
+
+    const placedDiv = document.getElementById("placedUtility");
+    const paraPlace = document.createElement("p");
+    paraPlace.style.marginTop = "2px";
+    paraPlace.style.marginBottom = "2px";
+    paraPlace.innerHTML = "Wards Placed: "+ playerInfo.wardsPlaced;
+    placedDiv.appendChild(paraPlace);
+
+    const killedDiv = document.getElementById("killedUtility");
+    const paraKilled = document.createElement("p");
+    paraKilled.style.marginTop = "2px";
+    paraKilled.style.marginBottom = "2px";
+    paraKilled.innerHTML = "Wards Killed: "+ playerInfo.wardsKilled;
+    killedDiv.appendChild(paraKilled);
+
+    const visionDiv = document.getElementById("visionUtility");
+    const paraVision = document.createElement("p");
+    paraVision.style.marginTop = "2px";
+    paraVision.style.marginBottom = "2px";
+    paraVision.innerHTML = "Vision Wards: "+ playerInfo.detectorWardsPlaced;
+    visionDiv.appendChild(paraVision);
+}
 // items and other section
 function fill_items_and_other(matches_data, goal) {
     const num_players = matches_data.info.participants.length;
     for (let i = 0; i < num_players; i++) {
         if (matches_data.info.participants[i].puuid == goal) {
-            var id = i;
             var playerInfo = matches_data.info.participants[i];
         }
     }
