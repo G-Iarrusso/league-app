@@ -10,7 +10,23 @@ const rankedSoloDuoQueueID = 420;
 const rankedFlexQueueID = 440;
 const blindPickQueueID = 430;
 console.log(rankedFlexQueueID);
+var id;
+var championName;
+var playerInfo;
 var api_key = config.MY_API_TOKEN;
+var match_data;
+function get_player_info(matches_data, goal){
+    const num_players = matches_data.info.participants.length;
+    for (let i = 0; i < num_players; i++) {
+        if (matches_data.info.participants[i].puuid == goal) {
+            id = i;
+            championName = matches_data.info.participants[i].championName;
+            playerInfo = matches_data.info.participants[i];
+        }
+    }
+}
+
+
 fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName + '?api_key=' + api_key).then((response) => {
     if (response.ok) {
         return response.json();
@@ -36,9 +52,11 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
                     }
                 })
                     .then(last_match_data => {
-                        fill_basic_info(last_match_data, player_data.puuid)
-                        fill_in_game_info(last_match_data, player_data.puuid)
-                        fill_items_and_other(last_match_data, player_data.puuid)
+                        match_data = last_match_data;
+                        get_player_info(last_match_data, player_data.puuid)
+                        fill_basic_info()
+                        fill_in_game_info()
+                        fill_items_and_other()
                     })
                     .catch((error) => console.error("FETCH ERROR:", error));
             })
@@ -123,15 +141,13 @@ function displayName(player_data) {
 
 
 //basic info div
-function fill_basic_info(last_match_data, puuid) {
-
-    displayMatch(last_match_data)
-    displayParticipant(last_match_data, puuid)
+function fill_basic_info() {
+    displayMatch()
+    displayParticipant()
 }
 
-function displayMatch(matches_data) {
-    console.log(matches_data)
-    const match = matches_data.info.queueId;
+function displayMatch() {
+    const match = match_data.info.queueId;
     const matchDiv = document.getElementById("info");
     var matchType;
     console.log(match)
@@ -158,15 +174,7 @@ function displayMatch(matches_data) {
     typeHeading.innerHTML = matchType;
     matchDiv.appendChild(typeHeading);
 }
-function displayParticipant(matches_data, goal) {
-    const num_players = matches_data.info.participants.length;
-    for (let i = 0; i < num_players; i++) {
-        if (matches_data.info.participants[i].puuid == goal) {
-            var id = i;
-            var championName = matches_data.info.participants[i].championName;
-            var playerInfo = matches_data.info.participants[i];
-        }
-    }
+function displayParticipant() {
     const champoionIcon = document.getElementById('championImage');
     console.log(champoionIcon);
     const img = document.createElement('img');
@@ -213,19 +221,13 @@ function displayParticipant(matches_data, goal) {
 }
 
 // damage_health section
-function fill_in_game_info(matches_data,goal){
-    fill_offense_info(matches_data,goal)
-    fill_defensive_info(matches_data,goal)
-    fill_utility_info(matches_data,goal)
+function fill_in_game_info(){
+    fill_offense_info()
+    fill_defensive_info()
+    fill_utility_info()
 }
 
-function fill_offense_info(matches_data, goal){
-    const num_players = matches_data.info.participants.length;
-    for (let i = 0; i < num_players; i++) {
-        if (matches_data.info.participants[i].puuid == goal) {
-            var playerInfo = matches_data.info.participants[i];
-        }
-    }
+function fill_offense_info(){
     const physicalDiv = document.getElementById("physicalDamage");
     const paraPhysical = document.createElement("p");
     paraPhysical.style.marginTop = "2px";
@@ -262,13 +264,7 @@ function fill_offense_info(matches_data, goal){
     killingDiv.appendChild(paraKilling);
 }
 
-function fill_defensive_info(matches_data, goal){
-    const num_players = matches_data.info.participants.length;
-    for (let i = 0; i < num_players; i++) {
-        if (matches_data.info.participants[i].puuid == goal) {
-            var playerInfo = matches_data.info.participants[i];
-        }
-    }
+function fill_defensive_info(){
 
     const physicalDiv = document.getElementById("physicalTank");
     const paraPhysical = document.createElement("p");
@@ -313,13 +309,7 @@ function fill_defensive_info(matches_data, goal){
     mitigatedDiv.appendChild(paraMitigated);
 } 
 
-function fill_utility_info(matches_data, goal){
-    const num_players = matches_data.info.participants.length;
-    for (let i = 0; i < num_players; i++) {
-        if (matches_data.info.participants[i].puuid == goal) {
-            var playerInfo = matches_data.info.participants[i];
-        }
-    }
+function fill_utility_info(){
 
     const goldDiv = document.getElementById("goldUtility");
     const paraGold = document.createElement("p");
@@ -357,13 +347,7 @@ function fill_utility_info(matches_data, goal){
     visionDiv.appendChild(paraVision);
 }
 // items and other section
-function fill_items_and_other(matches_data, goal) {
-    const num_players = matches_data.info.participants.length;
-    for (let i = 0; i < num_players; i++) {
-        if (matches_data.info.participants[i].puuid == goal) {
-            var playerInfo = matches_data.info.participants[i];
-        }
-    }
+function fill_items_and_other() {
     if (playerInfo.item0 != 0) {
         const item0 = document.getElementById('item0');
         const img0 = document.createElement('img');
