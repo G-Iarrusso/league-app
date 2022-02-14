@@ -53,7 +53,7 @@ color: #ffffff;
 #basic_info{
     background-color: #1f1f1f;
     text-indent: 10px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding-top: 10px;
     padding-right: 50px;
     padding-left: 50px;
@@ -107,16 +107,17 @@ color: #ffffff;
 #championImage{
     margin: auto 5px;
     float: right;
-    width: 200px;
-    height: 200px;
+    width: 260px;
+    height: 260px;
     display: inline;
     white-space: nowrap;
 }
 
 #championPicture{
     
-    width: 230px;
-    height:230px;
+    width: 100%;
+    height:100%;
+    padding-right: 5px;
 }
 
 

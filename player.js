@@ -27,7 +27,7 @@ function get_player_info(matches_data, goal){
 }
 
 
-fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summonerName + '?api_key=' + api_key).then((response) => {
+fetch(config.NAME_API + summonerName + '?api_key=' + api_key).then((response) => {
     if (response.ok) {
         return response.json();
     } else {
@@ -36,7 +36,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
 })
     .then(player_data => {
         fill_player_container(player_data);
-        fetch('https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/' + player_data.puuid + '/ids?api_key=' + api_key).then((response) => {
+        fetch(config.MATCH_LIST_API + player_data.puuid + '/ids?api_key=' + api_key).then((response) => {
             if (response.ok) {
                 return response.json();
             } else {
@@ -44,7 +44,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
             }
         })
             .then(matches_data => {
-                fetch('https://americas.api.riotgames.com/lol/match/v5/matches/' + matches_data[0] + '?api_key=' + api_key).then((response) => {
+                fetch(config.MATCH_API + matches_data[0] + '?api_key=' + api_key).then((response) => {
                     if (response.ok) {
                         return response.json();
                     } else {
@@ -53,6 +53,7 @@ fetch('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summo
                 })
                     .then(last_match_data => {
                         match_data = last_match_data;
+                        console.log(match_data)
                         get_player_info(last_match_data, player_data.puuid)
                         fill_basic_info()
                         fill_in_game_info()
@@ -87,7 +88,7 @@ function fill_player_container(player_data) {
 
 function displayRank(player_data) {
     console.log(player_data)
-    fetch('https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/' + player_data.id + '?api_key=' + api_key).then((response) => {
+    fetch(config.RANKED_API + player_data.id + '?api_key=' + api_key).then((response) => {
         if (response.ok) {
             return response.json();
         } else {
@@ -180,7 +181,7 @@ function displayParticipant() {
     const img = document.createElement('img');
     img.setAttribute("id", "championPicture");
     img.src =
-        'http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/' + championName + '.png';
+        config.CHAMPION_ICON_PRE + championName + '.png';
     champoionIcon.appendChild(img);
     //http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/Shen.png
     if (playerInfo.win == true) {
@@ -218,6 +219,11 @@ function displayParticipant() {
     const paraminionsmin = document.createElement("p");
     paraminionsmin.innerHTML ="Minion Farm per minute: " + Math.round((total_minions/playerInfo.timePlayed)*60*100)/100;
     minionperDiv.appendChild(paraminionsmin)
+
+    const timeDiv = document.getElementById("time");
+    const paraTime = document.createElement("p");
+    paraTime.innerHTML = "Time in Game: " + Math.round(playerInfo.timePlayed/60) + ":" + playerInfo.timePlayed%60;
+    timeDiv.appendChild(paraTime);
 }
 
 // damage_health section
@@ -352,17 +358,16 @@ function fill_items_and_other() {
         const item0 = document.getElementById('item0');
         const img0 = document.createElement('img');
         img0.setAttribute("id", "item0picture");
-        img0.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item0 + '.png';
+        img0.src = config.ITEM_ICON_PRE + playerInfo.item0 + '.png';
         console.log(img0.src)
         item0.appendChild(img0);
+        const item0name = document.getElementsById("item0name");
     }
     if (playerInfo.item1 != 0) {
         const item1 = document.getElementById('item1');
         const img1 = document.createElement('img');
         img1.setAttribute("id", "item1picture");
-        img1.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item1 + '.png';
+        img1.src = config.ITEM_ICON_PRE + playerInfo.item1 + '.png';
         console.log(img1.src)
         item1.appendChild(img1);
     }
@@ -370,8 +375,7 @@ function fill_items_and_other() {
         const item2 = document.getElementById('item2');
         const img2 = document.createElement('img');
         img2.setAttribute("id", "item2picture");
-        img2.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item2 + '.png';
+        img2.src = config.ITEM_ICON_PRE + playerInfo.item2 + '.png';
         console.log(img2.src)
         item2.appendChild(img2);
     }
@@ -379,8 +383,7 @@ function fill_items_and_other() {
         const item3 = document.getElementById('item3');
         const img3 = document.createElement('img');
         img3.setAttribute("id", "item3picture");
-        img3.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item3 + '.png';
+        img3.src = config.ITEM_ICON_PRE + playerInfo.item3 + '.png';
         console.log(img3.src)
         item3.appendChild(img3);
     }
@@ -388,8 +391,7 @@ function fill_items_and_other() {
         const item4 = document.getElementById('item4');
         const img4 = document.createElement('img');
         img4.setAttribute("id", "item4picture");
-        img4.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item4 + '.png';
+        img4.src = config.ITEM_ICON_PRE + playerInfo.item4 + '.png';
         console.log(img4.src)
         item4.appendChild(img4);
     }
@@ -397,8 +399,7 @@ function fill_items_and_other() {
         const item5 = document.getElementById('item5');
         const img5 = document.createElement('img');
         img5.setAttribute("id", "item5picture");
-        img5.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item5 + '.png';
+        img5.src = config.ITEM_ICON_PRE + playerInfo.item5 + '.png';
         console.log(img5.src)
         item5.appendChild(img5);
     }
@@ -406,8 +407,7 @@ function fill_items_and_other() {
         const item6 = document.getElementById('item6');
         const img6 = document.createElement('img');
         img6.setAttribute("id", "item6picture");
-        img6.src =
-            'https://opgg-static.akamaized.net/images/lol/item/' + playerInfo.item6 + '.png';
+        img6.src = config.ITEM_ICON_PRE + playerInfo.item6 + '.png';
         console.log(img6.src)
         item6.appendChild(img6);
     }
