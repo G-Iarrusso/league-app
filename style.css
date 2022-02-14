@@ -139,6 +139,9 @@ color: #ffffff;
     color:#7a7a7a
 }
 #damage_health{
-    font-size: 1rem;
+    font-size: 1.25rem;
+    display: flex;
+}
+#paircontainer{
     display: flex;
 }

@@ -127,7 +127,7 @@ function displayLevel(player_data) {
     const levelHeading = document.createElement("h2");
     levelHeading.style.marginTop = "2px";
     levelHeading.style.marginBottom = "2px";
-    levelHeading.innerHTML = level;
+    levelHeading.innerHTML = "Summoner Level: " +level;
     levelDiv.appendChild(levelHeading);
 }
 
@@ -361,7 +361,6 @@ function fill_items_and_other() {
         img0.src = config.ITEM_ICON_PRE + playerInfo.item0 + '.png';
         console.log(img0.src)
         item0.appendChild(img0);
-        const item0name = document.getElementsById("item0name");
     }
     if (playerInfo.item1 != 0) {
         const item1 = document.getElementById('item1');
@@ -411,9 +410,88 @@ function fill_items_and_other() {
         console.log(img6.src)
         item6.appendChild(img6);
     }
+    set_summ_icons(1)
+    set_summ_icons(2)
 
 }
+function set_summ_icons(num){
+    var checker;
+    var element;
+    var elementimg;
+    if (num==1){
+        checker = playerInfo.summoner1Id;
+        element = "summ1";
+        elementimg = "summ1img"
+    }
+    else{
+        checker = playerInfo.summoner2Id;
+        element = "summ2";
+        elementimg = "summ2img"
+    }
+    const summ = document.getElementById(element);
+    const summimg = document.getElementById(elementimg);
+    const img = document.createElement('img');
+    img.setAttribute("id", elementimg);
+    switch(checker) {
+        case 11:
+            summ.innerHTML = "SMITE";
+            img.src = config.SMITE_ICON;
+            break;
+        
+        case 4:
+            summ.innerHTML = "FLASH";
+            img.src = config.FLASH_ICON;
+            break;
 
+        case 14:
+            summ.innerHTML = "IGNITE";
+            img.src = config.IGNITE_ICON;
+            break;
+
+        case 7:
+            summ.innerHTML = "HEAL";
+            img.src = config.HEAL_ICON;
+            break;
+
+        case 3:
+            summ.innerHTML = "EXHAUST";
+            img.src = config.EXHAUST_ICON;
+            break;
+
+        case 12:
+            summ.innerHTML = "TELEPORT";
+            img.src = config.TP_ICON;
+            break;
+
+        case 6:
+            summ.innerHTML = "GHOST";
+            img.src = config.GHOST_ICON;
+            break;
+            
+        case 21:
+            summ.innerHTML = "BARRIER";
+            img.src = config.BARRIER_ICON;
+            break;
+
+        case 32:
+            summ.innerHTML = "SNOWBALL";
+            img.src = config.SNOWBALL_ICON;
+            break;
+
+        case 13:
+            summ.innerHTML = "CLARITY";
+            img.src = config.CLARITY_ICON;
+            break;
+
+        case 1:
+            summ.innerHTML = "CLENSE";
+            img.src = config.CLENSE_ICON;
+            break;
+      }
+      summimg.appendChild(img);
+    console.log("done")
+
+}
 // maybe refactor to not do so man fetches at start
 
 // separate better for the player page divs
