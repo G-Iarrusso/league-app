@@ -1,6 +1,7 @@
 
 // player loading
-var summonerName = window.location.search.substring(14)
+var items;
+var summonerName = window.location.search.substring(14);
 console.log(window.location.search);
 console.log(summonerName);
 document.getElementById("myForm").value = summonerName;
@@ -15,6 +16,13 @@ var championName;
 var playerInfo;
 var api_key = config.MY_API_TOKEN;
 var match_data;
+
+fetch("./items.json")
+.then(response => {
+   return response.json();
+})
+.then(data => items=data);
+
 function get_player_info(matches_data, goal){
     const num_players = matches_data.info.participants.length;
     for (let i = 0; i < num_players; i++) {
@@ -354,6 +362,8 @@ function fill_utility_info(){
 }
 // items and other section
 function fill_items_and_other() {
+    console.log("hello:"+items[0].name)
+    console.log("length is:" + items.length)
     if (playerInfo.item0 != 0) {
         const item0 = document.getElementById('item0');
         const img0 = document.createElement('img');

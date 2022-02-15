@@ -79,7 +79,7 @@ color: #ffffff;
     background-color: #1f1f1f;
     text-indent: 10px;
     font-size: 1.5rem;
-    padding-top: 10px;
+    padding-top: 50px;
     padding-right: 50px;
     padding-left: 50px;
     padding-bottom: 10px;
@@ -87,8 +87,8 @@ color: #ffffff;
     position: relative;
     top: 10px;
     right: -10px;
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 #coloumns{
