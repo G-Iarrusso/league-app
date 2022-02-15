@@ -10,7 +10,7 @@ text-indent: 10px;
 #player_container{
 justify-content: center;
 width: 100%;
-max-width: 1300px;
+max-width: 1280px;
 margin-right: auto;
 margin-left: auto;
 padding-right: 10px;
@@ -144,4 +144,22 @@ color: #ffffff;
 }
 #paircontainer{
     display: flex;
+}
+
+@media screen and (max-width: 700px) {
+    #damage_health{
+        display: none;
+    }
+    #coloumns{
+        background-color: #1f2f3f;
+        position: relative;
+        padding: 0 0 0 0;
+    }
+    #items_and_other{
+        text-indent: 10px;
+        width: 5360px;
+        top: 0px;
+        right: 0px;
+        display: flex;
+    }
 }
