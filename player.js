@@ -194,10 +194,12 @@ function displayParticipant() {
     //http://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/Shen.png
     if (playerInfo.win == true) {
         document.getElementById("match_history").style.border = "10px solid green ";
+        document.getElementById("player_container").style.border = "10px solid green ";
     }
     else {
 
         document.getElementById("match_history").style.border = "10px solid red";
+        document.getElementById("player_container").style.border = "10px solid red";
     }
     console.log(id);
     const score = playerInfo.kills + "/" + playerInfo.deaths + "/" + playerInfo.assists;
