@@ -364,65 +364,44 @@ function fill_utility_info(){
 function fill_items_and_other() {
     console.log("hello:"+items[0].name)
     console.log("length is:" + items.length)
-    if (playerInfo.item0 != 0) {
-        const item0 = document.getElementById('item0');
-        const img0 = document.createElement('img');
-        img0.setAttribute("id", "item0picture");
-        img0.src = config.ITEM_ICON_PRE + playerInfo.item0 + '.png';
-        console.log(img0.src)
-        item0.appendChild(img0);
-    }
-    if (playerInfo.item1 != 0) {
-        const item1 = document.getElementById('item1');
-        const img1 = document.createElement('img');
-        img1.setAttribute("id", "item1picture");
-        img1.src = config.ITEM_ICON_PRE + playerInfo.item1 + '.png';
-        console.log(img1.src)
-        item1.appendChild(img1);
-    }
-    if (playerInfo.item2 != 0) {
-        const item2 = document.getElementById('item2');
-        const img2 = document.createElement('img');
-        img2.setAttribute("id", "item2picture");
-        img2.src = config.ITEM_ICON_PRE + playerInfo.item2 + '.png';
-        console.log(img2.src)
-        item2.appendChild(img2);
-    }
-    if (playerInfo.item3 != 0) {
-        const item3 = document.getElementById('item3');
-        const img3 = document.createElement('img');
-        img3.setAttribute("id", "item3picture");
-        img3.src = config.ITEM_ICON_PRE + playerInfo.item3 + '.png';
-        console.log(img3.src)
-        item3.appendChild(img3);
-    }
-    if (playerInfo.item4 != 0) {
-        const item4 = document.getElementById('item4');
-        const img4 = document.createElement('img');
-        img4.setAttribute("id", "item4picture");
-        img4.src = config.ITEM_ICON_PRE + playerInfo.item4 + '.png';
-        console.log(img4.src)
-        item4.appendChild(img4);
-    }
-    if (playerInfo.item5 != 0) {
-        const item5 = document.getElementById('item5');
-        const img5 = document.createElement('img');
-        img5.setAttribute("id", "item5picture");
-        img5.src = config.ITEM_ICON_PRE + playerInfo.item5 + '.png';
-        console.log(img5.src)
-        item5.appendChild(img5);
-    }
-    if (playerInfo.item6 != 0) {
-        const item6 = document.getElementById('item6');
-        const img6 = document.createElement('img');
-        img6.setAttribute("id", "item6picture");
-        img6.src = config.ITEM_ICON_PRE + playerInfo.item6 + '.png';
-        console.log(img6.src)
-        item6.appendChild(img6);
-    }
-    set_summ_icons(1)
-    set_summ_icons(2)
 
+    set_item_icons(document.getElementById('item0'), playerInfo.item0);
+    set_item_icons(document.getElementById('item1'), playerInfo.item1);
+    set_item_icons(document.getElementById('item2'), playerInfo.item2);
+    set_item_icons(document.getElementById('item3'), playerInfo.item3);
+    set_item_icons(document.getElementById('item4'), playerInfo.item4);
+    set_item_icons(document.getElementById('item5'), playerInfo.item5);
+    set_item_icons(document.getElementById('item6'), playerInfo.item6);
+
+    set_item_names(document.getElementById('item0name'), playerInfo.item0);
+    set_item_names(document.getElementById('item1name'), playerInfo.item1);
+    set_item_names(document.getElementById('item2name'), playerInfo.item2);
+    set_item_names(document.getElementById('item3name'), playerInfo.item3);
+    set_item_names(document.getElementById('item4name'), playerInfo.item4);
+    set_item_names(document.getElementById('item5name'), playerInfo.item5);
+    set_item_names(document.getElementById('item6name'), playerInfo.item6);
+
+    set_summ_icons(1);
+    set_summ_icons(2);
+
+}
+function set_item_icons(item_div, id){
+    const img = document.createElement('img');
+    var id_name = item_div.id+"picture"
+    img.setAttribute("id", id_name);
+    img.src = config.ITEM_ICON_PRE + id + '.png';
+    img.onerror = function(){
+        this.style.display = "none";
+    }
+    console.log(img.src)
+    item_div.appendChild(img);
+}
+function set_item_names(item_div,id){
+    for(i = 0; i< items.length; i++){
+        if (id == items[i].id){
+            item_div.innerHTML = items[i].name;
+        }
+    }
 }
 function set_summ_icons(num){
     var checker;
