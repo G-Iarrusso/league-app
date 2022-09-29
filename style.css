@@ -164,12 +164,11 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
     display: none;
-    z-index: 9;
+    max-width: 490px;
 
 }
 
@@ -182,11 +181,11 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
     display: none;
+    max-width: 490px;
 
 }
 
@@ -199,10 +198,10 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
+    max-width: 490px;
     display: none;
 
 }
@@ -216,11 +215,11 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
     display: none;
+    max-width: 490px;
 
 }
 
@@ -233,11 +232,11 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
     display: none;
+    max-width: 490px;
 
 }
 
@@ -250,11 +249,11 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
     display: none;
+    max-width: 490px;
 
 }
 
@@ -267,11 +266,11 @@
     line-height: 20px;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
     top: auto;
     left: auto;
     padding: 0 0px;
     display: none;
+    max-width: 490px;
 
 }
 
