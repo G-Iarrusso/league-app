@@ -18,12 +18,12 @@ var api_key = config.MY_API_TOKEN;
 var match_data;
 
 fetch("./items.json")
-.then(response => {
-   return response.json();
-})
-.then(data => items=data);
+    .then(response => {
+        return response.json();
+    })
+    .then(data => items = data);
 
-function get_player_info(matches_data, goal){
+function get_player_info(matches_data, goal) {
     const num_players = matches_data.info.participants.length;
     for (let i = 0; i < num_players; i++) {
         if (matches_data.info.participants[i].puuid == goal) {
@@ -111,7 +111,7 @@ function displayRank(player_data) {
             }
         }
         const rankedDiv = document.getElementById("ranked");
-        const rank = rankedInfo.tier + " "+ rankedInfo.rank + " LP: "+rankedInfo.leaguePoints;
+        const rank = rankedInfo.tier + " " + rankedInfo.rank + " LP: " + rankedInfo.leaguePoints;
         const rankHeading = document.createElement("h3");
         rankHeading.style.marginTop = "2px";
         rankHeading.style.marginBottom = "2px";
@@ -135,7 +135,7 @@ function displayLevel(player_data) {
     const levelHeading = document.createElement("h2");
     levelHeading.style.marginTop = "2px";
     levelHeading.style.marginBottom = "2px";
-    levelHeading.innerHTML = "Summoner Level: " +level;
+    levelHeading.innerHTML = "Summoner Level: " + level;
     levelDiv.appendChild(levelHeading);
 }
 
@@ -222,149 +222,149 @@ function displayParticipant() {
     const minionDiv = document.getElementById("minions");
     const paraminions = document.createElement("p");
     var total_minions = playerInfo.totalMinionsKilled + playerInfo.neutralMinionsKilled;
-    paraminions.innerHTML = "Minion Farm: "+total_minions;
+    paraminions.innerHTML = "Minion Farm: " + total_minions;
     minionDiv.appendChild(paraminions)
 
     const minionperDiv = document.getElementById("minions_min");
     const paraminionsmin = document.createElement("p");
-    paraminionsmin.innerHTML ="Minion Farm per minute: " + Math.round((total_minions/playerInfo.timePlayed)*60*100)/100;
+    paraminionsmin.innerHTML = "Minion Farm per minute: " + Math.round((total_minions / playerInfo.timePlayed) * 60 * 100) / 100;
     minionperDiv.appendChild(paraminionsmin)
 
     const timeDiv = document.getElementById("time");
     const paraTime = document.createElement("p");
-    paraTime.innerHTML = "Time in Game: " + Math.round(playerInfo.timePlayed/60) + ":" + playerInfo.timePlayed%60;
+    paraTime.innerHTML = "Time in Game: " + Math.round(playerInfo.timePlayed / 60) + ":" + playerInfo.timePlayed % 60;
     timeDiv.appendChild(paraTime);
 }
 
 // damage_health section
-function fill_in_game_info(){
+function fill_in_game_info() {
     fill_offense_info()
     fill_defensive_info()
     fill_utility_info()
 }
 
-function fill_offense_info(){
+function fill_offense_info() {
     const physicalDiv = document.getElementById("physicalDamage");
     const paraPhysical = document.createElement("p");
     paraPhysical.style.marginTop = "2px";
     paraPhysical.style.marginBottom = "2px";
-    paraPhysical.innerHTML ="Physical Damage: "+playerInfo.physicalDamageDealtToChampions;
+    paraPhysical.innerHTML = "Physical Damage: " + playerInfo.physicalDamageDealtToChampions;
     physicalDiv.appendChild(paraPhysical)
 
     const magicDiv = document.getElementById("magicDamage");
     const paraMagic = document.createElement("p");
     paraMagic.style.marginTop = "2px";
     paraMagic.style.marginBottom = "2px";
-    paraMagic.innerHTML = "Magic Damage: "+playerInfo.magicDamageDealtToChampions;
+    paraMagic.innerHTML = "Magic Damage: " + playerInfo.magicDamageDealtToChampions;
     magicDiv.appendChild(paraMagic)
 
     const trueDiv = document.getElementById("trueDamage");
     const paraTrue = document.createElement("p");
     paraTrue.style.marginTop = "2px";
     paraTrue.style.marginBottom = "2px";
-    paraTrue.innerHTML = "True Damage: "+ playerInfo.trueDamageDealtToChampions;
+    paraTrue.innerHTML = "True Damage: " + playerInfo.trueDamageDealtToChampions;
     trueDiv.appendChild(paraTrue);
 
     const totalDiv = document.getElementById("totalDamage");
     const paraTotal = document.createElement("p");
     paraTotal.style.marginTop = "2px";
     paraTotal.style.marginBottom = "2px";
-    paraTotal.innerHTML = "Total Damage: "+ playerInfo.totalDamageDealtToChampions;
+    paraTotal.innerHTML = "Total Damage: " + playerInfo.totalDamageDealtToChampions;
     totalDiv.appendChild(paraTotal);
 
     const killingDiv = document.getElementById("killingSpree");
     const paraKilling = document.createElement("p");
     paraKilling.style.marginTop = "2px";
     paraKilling.style.marginBottom = "2px";
-    paraKilling.innerHTML = "Largest Killing Spree: "+ playerInfo.largestKillingSpree;
+    paraKilling.innerHTML = "Largest Killing Spree: " + playerInfo.largestKillingSpree;
     killingDiv.appendChild(paraKilling);
 }
 
-function fill_defensive_info(){
+function fill_defensive_info() {
 
     const physicalDiv = document.getElementById("physicalTank");
     const paraPhysical = document.createElement("p");
     paraPhysical.style.marginTop = "2px";
     paraPhysical.style.marginBottom = "2px";
-    paraPhysical.innerHTML = "Physical Damage: "+ playerInfo.physicalDamageTaken;
+    paraPhysical.innerHTML = "Physical Damage: " + playerInfo.physicalDamageTaken;
     physicalDiv.appendChild(paraPhysical);
-    
+
     const magicDiv = document.getElementById("magicTank");
     const paraMagic = document.createElement("p");
     paraMagic.style.marginTop = "2px";
     paraMagic.style.marginBottom = "2px";
-    paraMagic.innerHTML = "Magic Damage: "+playerInfo.magicDamageTaken;
+    paraMagic.innerHTML = "Magic Damage: " + playerInfo.magicDamageTaken;
     magicDiv.appendChild(paraMagic)
 
     const trueDiv = document.getElementById("trueTank");
     const paraTrue = document.createElement("p");
     paraTrue.style.marginTop = "2px";
     paraTrue.style.marginBottom = "2px";
-    paraTrue.innerHTML = "True Damage: "+ playerInfo.trueDamageTaken;
+    paraTrue.innerHTML = "True Damage: " + playerInfo.trueDamageTaken;
     trueDiv.appendChild(paraTrue);
 
     const totalDiv = document.getElementById("totalTank");
     const paraTotal = document.createElement("p");
     paraTotal.style.marginTop = "2px";
     paraTotal.style.marginBottom = "2px";
-    paraTotal.innerHTML = "Total Damage: "+ playerInfo.totalDamageTaken;
+    paraTotal.innerHTML = "Total Damage: " + playerInfo.totalDamageTaken;
     totalDiv.appendChild(paraTotal);
 
     const healDiv = document.getElementById("healTank");
     const paraHeal = document.createElement("p");
     paraHeal.style.marginTop = "2px";
     paraHeal.style.marginBottom = "2px";
-    paraHeal.innerHTML = "Damage Healed: "+ playerInfo.totalHeal;
+    paraHeal.innerHTML = "Damage Healed: " + playerInfo.totalHeal;
     healDiv.appendChild(paraHeal);
 
     const mitigatedDiv = document.getElementById("mitigatedTank");
     const paraMitigated = document.createElement("p");
     paraMitigated.style.marginTop = "2px";
     paraMitigated.style.marginBottom = "2px";
-    paraMitigated.innerHTML = "Mitigated Damage: "+ playerInfo.damageSelfMitigated;
+    paraMitigated.innerHTML = "Mitigated Damage: " + playerInfo.damageSelfMitigated;
     mitigatedDiv.appendChild(paraMitigated);
-} 
+}
 
-function fill_utility_info(){
+function fill_utility_info() {
 
     const goldDiv = document.getElementById("goldUtility");
     const paraGold = document.createElement("p");
     paraGold.style.marginTop = "2px";
     paraGold.style.marginBottom = "2px";
-    paraGold.innerHTML = "Gold Earned: "+ playerInfo.goldEarned;
+    paraGold.innerHTML = "Gold Earned: " + playerInfo.goldEarned;
     goldDiv.appendChild(paraGold);
 
     const scoreDiv = document.getElementById("scoreUtility");
     const paraScore = document.createElement("p");
     paraScore.style.marginTop = "2px";
     paraScore.style.marginBottom = "2px";
-    paraScore.innerHTML = "Vision Score: "+ playerInfo.visionScore;
+    paraScore.innerHTML = "Vision Score: " + playerInfo.visionScore;
     scoreDiv.appendChild(paraScore);
 
     const placedDiv = document.getElementById("placedUtility");
     const paraPlace = document.createElement("p");
     paraPlace.style.marginTop = "2px";
     paraPlace.style.marginBottom = "2px";
-    paraPlace.innerHTML = "Wards Placed: "+ playerInfo.wardsPlaced;
+    paraPlace.innerHTML = "Wards Placed: " + playerInfo.wardsPlaced;
     placedDiv.appendChild(paraPlace);
 
     const killedDiv = document.getElementById("killedUtility");
     const paraKilled = document.createElement("p");
     paraKilled.style.marginTop = "2px";
     paraKilled.style.marginBottom = "2px";
-    paraKilled.innerHTML = "Wards Killed: "+ playerInfo.wardsKilled;
+    paraKilled.innerHTML = "Wards Killed: " + playerInfo.wardsKilled;
     killedDiv.appendChild(paraKilled);
 
     const visionDiv = document.getElementById("visionUtility");
     const paraVision = document.createElement("p");
     paraVision.style.marginTop = "2px";
     paraVision.style.marginBottom = "2px";
-    paraVision.innerHTML = "Vision Wards: "+ playerInfo.detectorWardsPlaced;
+    paraVision.innerHTML = "Vision Wards: " + playerInfo.detectorWardsPlaced;
     visionDiv.appendChild(paraVision);
 }
 // items and other section
 function fill_items_and_other() {
-    console.log("hello:"+items[0].name)
+    console.log("hello:" + items[0].name)
     console.log("length is:" + items.length)
 
     set_item_icons(document.getElementById('item0'), playerInfo.item0);
@@ -383,38 +383,54 @@ function fill_items_and_other() {
     set_item_names(document.getElementById('item5name'), playerInfo.item5);
     set_item_names(document.getElementById('item6name'), playerInfo.item6);
 
+    set_item_info(document.getElementById('item0info'), playerInfo.item0);
+    set_item_info(document.getElementById('item1info'), playerInfo.item1);
+    set_item_info(document.getElementById('item2info'), playerInfo.item2);
+    set_item_info(document.getElementById('item3info'), playerInfo.item3);
+    set_item_info(document.getElementById('item4info'), playerInfo.item4);
+    set_item_info(document.getElementById('item5info'), playerInfo.item5);
+    set_item_info(document.getElementById('item6info'), playerInfo.item6);
+
     set_summ_icons(1);
     set_summ_icons(2);
 
 }
-function set_item_icons(item_div, id){
+function set_item_icons(item_div, id) {
     const img = document.createElement('img');
-    var id_name = item_div.id+"picture"
+    var id_name = item_div.id + "picture"
     img.setAttribute("id", id_name);
     img.src = config.ITEM_ICON_PRE + id + '.png';
-    img.onerror = function(){
+    img.onerror = function () {
         this.style.display = "none";
     }
     console.log(img.src)
     item_div.appendChild(img);
 }
-function set_item_names(item_div,id){
-    for(i = 0; i< items.length; i++){
-        if (id == items[i].id){
+function set_item_info(item_div, id) {
+    for (i = 0; i < items.length; i++) {
+        if (id == items[i].id) {
+            item_div.innerHTML = items[i].name;
+            item_div.innerHTML += "<br>" + items[i].description;
+        }
+    }
+}
+function set_item_names(item_div, id) {
+    for (i = 0; i < items.length; i++) {
+        if (id == items[i].id) {
             item_div.innerHTML = items[i].name;
         }
     }
 }
-function set_summ_icons(num){
+function set_summ_icons(num) {
     var checker;
     var element;
     var elementimg;
-    if (num==1){
+    if (num == 1) {
         checker = playerInfo.summoner1Id;
         element = "summ1";
         elementimg = "summ1img"
     }
-    else{
+    else {
         checker = playerInfo.summoner2Id;
         element = "summ2";
         elementimg = "summ2img"
@@ -423,12 +439,12 @@ function set_summ_icons(num){
     const summimg = document.getElementById(elementimg);
     const img = document.createElement('img');
     img.setAttribute("id", elementimg);
-    switch(checker) {
+    switch (checker) {
         case 11:
             summ.innerHTML = "SMITE";
             img.src = config.SMITE_ICON;
             break;
-        
+
         case 4:
             summ.innerHTML = "FLASH";
             img.src = config.FLASH_ICON;
@@ -458,7 +474,7 @@ function set_summ_icons(num){
             summ.innerHTML = "GHOST";
             img.src = config.GHOST_ICON;
             break;
-            
+
         case 21:
             summ.innerHTML = "BARRIER";
             img.src = config.BARRIER_ICON;
@@ -478,8 +494,8 @@ function set_summ_icons(num){
             summ.innerHTML = "CLENSE";
             img.src = config.CLENSE_ICON;
             break;
-      }
-      summimg.appendChild(img);
+    }
+    summimg.appendChild(img);
     console.log("done")
 
 }

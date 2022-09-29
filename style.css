@@ -1,56 +1,61 @@
 #player {
-font-size: 1.5rem;
-display: center;
-align-items: left;
-color: #ffffff;
-width: 100%;
-text-indent: 10px;
+    font-size: 1.5rem;
+    display: center;
+    align-items: left;
+    color: #ffffff;
+    width: 100%;
+    text-indent: 10px;
 }
 
-#player_container{
-justify-content: center;
-width: 100%;
-max-width: 1280px;
-margin-right: auto;
-margin-left: auto;
-padding-right: 10px;
-padding-left: 10px;
-padding-bottom: 10px;
-background-color: #1f1f1f;
-color: #ffffff;
+#player_container {
+    justify-content: center;
+    width: 100%;
+    max-width: 1280px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background-color: #1f1f1f;
+    color: #ffffff;
 }
-#match_history{
-display: center;
-justify-content: left;
-z-index: 1;
-width: 100%;
-max-width: 1280px;
-margin-right: auto;
-margin-left: auto;
-padding-top: 10px;
-padding-right: 10px;
-padding-left: 10px;
-padding-bottom: 10px;
-background-color: #1f2f3f;
-border: 4px solid  #ffffff;
-color: #ffffff;
+
+#match_history {
+    display: center;
+    justify-content: left;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background-color: #1f2f3f;
+    border: 4px solid #ffffff;
+    color: #ffffff;
 
 }
-#welcome{
+
+#welcome {
     color: white;
     font-size: 2rem;
 }
-#myForm{
+
+#myForm {
     color: white;
     font-size: 2rem;
 }
-#level{
+
+#level {
     font-size: 1rem;
     position: relative;
     text-indent: 10px;
     top: -20px;
 }
-#basic_info{
+
+#basic_info {
     background-color: #1f1f1f;
     text-indent: 10px;
     font-size: 1rem;
@@ -60,7 +65,7 @@ color: #ffffff;
     padding-bottom: 10px;
 }
 
-#damage_health{
+#damage_health {
     background-color: #1f1f1f;
     text-indent: 10px;
     font-size: 1.5rem;
@@ -68,14 +73,15 @@ color: #ffffff;
     padding-right: 50px;
     padding-left: 50px;
     padding-bottom: 10px;
-    width:490px;
+    width: 490px;
     position: relative;
     top: 10px;
     right: 10px;
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
-#items_and_other{
+
+#items_and_other {
     background-color: #1f1f1f;
     text-indent: 10px;
     font-size: 1.5rem;
@@ -91,7 +97,7 @@ color: #ffffff;
     flex-direction: column;
 }
 
-#coloumns{
+#coloumns {
     background-color: #1f2f3f;
     z-index: 1;
     max-width: 1200px;
@@ -104,7 +110,7 @@ color: #ffffff;
     display: flex;
 }
 
-#championImage{
+#championImage {
     margin: auto 5px;
     float: right;
     width: 260px;
@@ -113,49 +119,209 @@ color: #ffffff;
     white-space: nowrap;
 }
 
-#championPicture{
-    
+#championPicture {
+
     width: 100%;
-    height:100%;
+    height: 100%;
     padding-right: 5px;
 }
 
-
-#rankImage{
+#rankImage {
     margin: auto 5px;
     float: right;
     width: 170px;
     height: 170px;
     display: inline;
     white-space: nowrap;
-    
+
 }
 
-#rankedPicture{
+#rankedPicture {
     width: 170px;
-    height:170px;
+    height: 170px;
 }
-#github{
-    color:#7a7a7a
+
+#github {
+    color: #7a7a7a
 }
-#damage_health{
+
+#damage_health {
     font-size: 1.25rem;
     display: flex;
 }
-#paircontainer{
+
+#paircontainer {
     display: flex;
 }
 
+
+#item0info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+    z-index: 9;
+
+}
+
+#item1info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+
+}
+
+#item2info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+
+}
+
+#item3info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+
+}
+
+#item4info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+
+}
+
+#item5info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+
+}
+
+#item6info {
+    background-color: #1f2f3f;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: auto;
+    left: auto;
+    padding: 0 0px;
+    display: none;
+
+}
+
+#paircontainer:hover #item0info {
+    z-index: 9;
+    display: block;
+}
+
+#paircontainer:hover #item1info {
+    z-index: 9;
+    display: block;
+}
+
+#paircontainer:hover #item2info {
+    z-index: 9;
+    display: block;
+}
+
+#paircontainer:hover #item3info {
+    z-index: 9;
+    display: block;
+}
+
+#paircontainer:hover #item4info {
+    z-index: 9;
+    display: block;
+}
+
+#paircontainer:hover #item5info {
+    z-index: 9;
+    display: block;
+}
+
+#paircontainer:hover #item6info {
+    z-index: 9;
+    display: block;
+}
+
 @media screen and (max-width: 700px) {
-    #damage_health{
+    #damage_health {
         display: none;
     }
-    #coloumns{
+
+    #coloumns {
         background-color: #1f2f3f;
         position: relative;
         padding: 0 0 0 0;
     }
-    #items_and_other{
+
+    #items_and_other {
         text-indent: 10px;
         width: 5360px;
         top: 0px;
