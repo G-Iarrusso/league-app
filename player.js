@@ -108,23 +108,24 @@ function displayRank(player_data) {
             if (player_ranked_data[i].queueType == "RANKED_SOLO_5x5") {
                 var id = i;
                 var rankedInfo = player_ranked_data[i];
+
+                const rankedDiv = document.getElementById("ranked");
+                const rank = rankedInfo.tier + " " + rankedInfo.rank + " LP: " + rankedInfo.leaguePoints;
+                const rankHeading = document.createElement("h3");
+                rankHeading.style.marginTop = "2px";
+                rankHeading.style.marginBottom = "2px";
+                rankHeading.innerHTML = rank;
+                rankedDiv.appendChild(rankHeading);
+
+                const rankedIcon = document.getElementById('rankImage');
+                console.log(rankedIcon);
+                const img = document.createElement('img');
+                img.setAttribute("id", "rankedPicture");
+                img.src =
+                    '/Ranked_Icons/Emblem_' + player_ranked_data[id].tier + '.png';
+                rankedIcon.appendChild(img);
             }
         }
-        const rankedDiv = document.getElementById("ranked");
-        const rank = rankedInfo.tier + " " + rankedInfo.rank + " LP: " + rankedInfo.leaguePoints;
-        const rankHeading = document.createElement("h3");
-        rankHeading.style.marginTop = "2px";
-        rankHeading.style.marginBottom = "2px";
-        rankHeading.innerHTML = rank;
-        rankedDiv.appendChild(rankHeading);
-
-        const rankedIcon = document.getElementById('rankImage');
-        console.log(rankedIcon);
-        const img = document.createElement('img');
-        img.setAttribute("id", "rankedPicture");
-        img.src =
-            '/Ranked_Icons/Emblem_' + player_ranked_data[id].tier + '.png';
-        rankedIcon.appendChild(img);
     })
 }
 function displayLevel(player_data) {
@@ -396,21 +397,25 @@ function fill_items_and_other() {
 
 }
 function set_item_icons(item_div, id) {
-    const img = document.createElement('img');
-    var id_name = item_div.id + "picture"
-    img.setAttribute("id", id_name);
-    img.src = config.ITEM_ICON_PRE + id + '.png';
-    img.onerror = function () {
-        this.style.display = "none";
+    if (id > 0) {
+        const img = document.createElement('img');
+        var id_name = item_div.id + "picture"
+        img.setAttribute("id", id_name);
+        img.src = config.ITEM_ICON_PRE + id + '.png';
+        img.onerror = function () {
+            this.style.display = "none";
+        }
+        console.log(img.src)
+        item_div.appendChild(img);
     }
-    console.log(img.src)
-    item_div.appendChild(img);
 }
 function set_item_info(item_div, id) {
-    for (i = 0; i < items.length; i++) {
-        if (id == items[i].id) {
-            item_div.innerHTML = items[i].name;
-            item_div.innerHTML += "<br>" + items[i].description;
+    if (id > 0) {
+        for (i = 0; i < items.length; i++) {
+            if (id == items[i].id) {
+                item_div.innerHTML = items[i].name;
+                item_div.innerHTML += "<br>" + items[i].description;
+            }
         }
     }
 }
