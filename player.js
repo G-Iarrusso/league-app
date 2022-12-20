@@ -17,7 +17,7 @@ var playerInfo;
 var api_key = config.MY_API_TOKEN;
 var match_data;
 
-fetch("./items.json")
+fetch("https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/items.json")
     .then(response => {
         return response.json();
     })
